@@ -75,7 +75,7 @@ Pagina3
 
 ```{r}
 renderTable({
-  table(iris)
+  head(iris)
 })
 
 ```
