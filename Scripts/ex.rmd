@@ -1,0 +1,82 @@
+---
+title: "Dataset"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme: cerulean
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(ggplot2)
+library(plotly)
+library(gapminder)
+library(dplyr)
+```
+
+Pagina1
+===
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+ggplot(data = iris) + geom_point(aes(Sepal.Length, Sepal.Width, color = Species)) + theme_bw()
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+ggplot(data = iris, fill = Species) + geom_bar(aes(Sepal.Length)) + theme_bw()
+```
+
+### Chart C
+
+```{r}
+ggplot(data = iris) + geom_boxplot(aes(Species,Sepal.Length, color = Species)) + theme_bw()
+```
+
+Pagina2
+===
+
+Column
+---
+
+### Gráfico 1
+```{r}
+ggplot(data = iris) + geom_point(aes(Petal.Length,Sepal.Length, color = Species)) + theme_bw()
+```
+
+Column {.tabset}
+---
+
+### Dados1
+```{r}
+ggplot(data = iris) + geom_col(aes(Species, Sepal.Width), fill = 'cyan')  + theme_bw()
+```
+
+### Dados2
+```{r}
+ggplot(data = iris) + geom_col(aes(Species, Petal.Width), fill = 'green')  + theme_bw()
+```
+
+
+Pagina3
+===
+
+### Tabela
+
+```{r}
+renderTable({
+  table(iris)
+})
+
+```
+
